@@ -19,10 +19,11 @@ public class QDecoder {
 		c conn = null;
 		
 		try {
-			conn = new c("localhost", 5001);
+			conn = new c("localhost", 9001);
 			
 			Object status = conn.k("tables[]");
 			log.info("xxxx status: {}", status);
+						
 			
 			while (true) {
 				log.info("......wating for upd ->");
