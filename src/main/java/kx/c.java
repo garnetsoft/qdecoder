@@ -293,6 +293,7 @@ private static final Logger log = LoggerFactory.getLogger(c.class);
 			case -19:
 				return rt();
 			}
+		
 		if (t > 99) {
 			if (t == 100) {
 				rs();
@@ -310,10 +311,14 @@ private static final Logger log = LoggerFactory.getLogger(c.class);
 		
 		if (t == 99)
 			return new Dict(r2(), r2());
+		
 		j++;
+		
 		if (t == 98)
 			return new Flip((Dict) r2());
+		
 		n = ri();
+		
 		switch (t) {
 		case 0:
 			Object[] L = new Object[n];

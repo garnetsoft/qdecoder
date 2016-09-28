@@ -83,16 +83,16 @@ kdb_send:{[x]
 	(neg h) x;
 	}
 
-/ table to hold active and inactive connection information
+
 sattr:{[t]
  c:first cols t;
  a:`g`u 1=n:count keys t;
  t:n!@[;c;a#]0!t;
  t}
+/ table to hold active and inactive connection information
 handle:sattr 1!flip `h`active`user`host`address`time!"ibss*p"$\:()
 
-
-// hook close to clean up subs
+/ hook close to clean up subs
 / .z.pc:{dna_close[x]};
 / record new client connection
 .z.po:{[h]`handle upsert (h;1b;.z.u;.Q.host .z.a;"i"$0x0 vs .z.a;.z.P);}
@@ -101,11 +101,12 @@ handle:sattr 1!flip `h`active`user`host`address`time!"ibss*p"$\:()
 / mark client connection as inactive
 .z.pc:{[h]
 	`handle upsert `h`active`time!(h;0b;.z.P);
-	dna_close[x];
+	kdb_close[h];
 	}
 
 upd:{
 	show "xxxx received upd: ", (string x);
+	(`acked;.z.Z)
   }
 
 / test data
